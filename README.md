@@ -1,4 +1,4 @@
-*Parking
+# Parking
 
 Sovelluksessa näkyy vapaasti käyttäjien lisättyjä parkkipaikkoja ja niihin liittyvää tietoa. Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.
 
