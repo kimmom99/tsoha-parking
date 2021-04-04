@@ -1,0 +1,14 @@
+{% if session.user_id != 0 %}
+<form action="/login" method="POST">
+<p>Tervetuloa parkkeeraussovelukkseen</p>
+<p>Tunnus:<br>
+<input type="text" name="username"></p>
+<p>Salasana:<br>
+<input type="password" name="password"></p>
+<br>
+<input type="submit" value="Kirjaudu">
+</form>
+<form action="/new_user">
+<input type="submit" value="Luo käyttäjätunnus">
+</form>
+{% endif %}
