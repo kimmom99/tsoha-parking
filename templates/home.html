@@ -1,6 +1,7 @@
-{% if session.username %}
+{% if session.user_id %}
 <p>Moi {{ session.username }}! Tervetuloa käyttämään parkkeeraussovellusta</p>
 <a href="/logout">Kirjaudu ulos</a>
 <hr>
 <a href="/add_parkinglot">Lisää parkkipaikka</a>
 {% endif %}
+

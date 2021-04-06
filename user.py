@@ -1,8 +1,5 @@
 from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask_sqlalchemy import SQLAlchemy
-from os import getenv
-from app import app
 from db import db
 
 def login(username, password):
@@ -12,12 +9,10 @@ def login(username, password):
     if user == None:
         return False
     else: 
-        hash_value = user[0]
-        if check_password_hash(hash_value, password):
+        if check_password_hash(user[0], password):
             session["username"] = username
             session["user_id"] = user[1]
             return True
-            
         else:
             return False
             
@@ -28,8 +23,8 @@ def logout():
 def create(username, password):
     hash_value = generate_password_hash(password)
     try:
-        sql = "INSERT INTO users (username,password) VALUES (:username,:password)"
-        db.session.execute(sql, {"username":username,"password":hash_value})
+        sql = "INSERT INTO users (username, password, admin, visible) VALUES (:username,:password,:admin,:visible)"
+        db.session.execute(sql, {"username":username, "password":hash_value, "admin":0, "visible":1})
         db.session.commit()
     except:
         return False
@@ -37,3 +32,6 @@ def create(username, password):
 
 def get_id():
     return session.get("user_id",0)
+
+def get_own_parking_lots():
+    pass
