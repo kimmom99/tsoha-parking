@@ -26,3 +26,8 @@ Sovelluksessa näkyy vapaasti käyttäjien lisättyjä parkkipaikkoja ja niihin 
 8. Admin can delete the user.
 9. User can modify the information about their own parking area.
 10. Admin can change the parking reservation.
+
+
+### Sovelluksen tilanne
+
+1. Kättäjä pystyy luomaan käyttäjätunnuksen ja kirjautumaan sisään.
