@@ -42,8 +42,7 @@ def logout():
 
 @app.route("/add_parkinglot")
 def add_parkinglot():
-    return render_template("error.html", message=user.get_id)
-    #return render_template("new_park.html")
+    return render_template("new_park.html")
 
 @app.route("/new_park", methods=["POST"])
 def new_park():

@@ -3,11 +3,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from os import getenv
 from app import app
-
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
-db = SQLAlchemy(app)
-app.secret_key = getenv("SECRET_KEY")
+from db import db
 
 def login(username, password):
     sql = "SELECT password, id FROM users WHERE username=:username"
@@ -26,7 +22,7 @@ def login(username, password):
             return False
             
 def logout():
-    #del session["username"]
+    del session["username"]
     del session["user_id"]
 
 def create(username, password):

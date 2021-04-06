@@ -1,13 +1,6 @@
-from flask import session
-from flask_sqlalchemy import SQLAlchemy
-from os import getenv
 from app import app
 import user
-
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
-db = SQLAlchemy(app)
-app.secret_key = getenv("SECRET_KEY")
+from db import db
 
 def add_new(description, price):
     user_id = user.get_id
