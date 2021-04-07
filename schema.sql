@@ -11,7 +11,7 @@ CREATE TABLE parkinglot (
     owner_id INTEGER REFERENCES users,
     reserved INTEGER,
     description TEXT,
-    price NUMERIC(4, 2),
+    price INTEGER,
     visible INTEGER
 );
 
@@ -25,7 +25,7 @@ CREATE TABLE comments(
     id SERIAL PRIMARY KEY,
     parkinglot_id INTEGER REFERENCES parkinglot,
     user_id INTEGER REFERENCES users,
-    comment_text TEXT
+    comment TEXT
 );
 
 CREATE TABLE fafourites(

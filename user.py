@@ -34,4 +34,7 @@ def get_id():
     return session.get("user_id",0)
 
 def get_own_parking_lots():
-    pass
+    id = get_id()
+    sql = "SELECT id, reserved, description , price FROM parkinglot WHERE owner_id=:user_id"
+    result =  db.session.execute(sql, {"user_id": id})
+    return result.fetchall()

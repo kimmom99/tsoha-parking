@@ -3,5 +3,21 @@
 <a href="/logout">Kirjaudu ulos</a>
 <hr>
 <a href="/add_parkinglot">Lisää parkkipaikka</a>
+<hr>
+<p>My parks:</p>
+{% for lot in lots %}
+{% if lot[1] == 0 %}
+<p>Paikka vapaana</p>
 {% endif %}
-
+<p>Kuvaus: {{ lot[2] }}</p>
+<p>Hinta: {{ lot[3] }}</p>
+<form action="/delete_parking_lot" method="POST">
+  <input type="submit" value="Ota käyttöön">
+</form>
+<br>
+<form action="/delete_parking_lot" method="POST">
+  <input type="submit" value="Poista parkkipaikka">
+</form>
+<hr>
+{% endfor %}
+{% endif %}
