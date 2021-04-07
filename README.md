@@ -32,6 +32,6 @@ Sovelluksessa näkyy vapaasti käyttäjien lisättyjä parkkipaikkoja ja niihin 
 
 - [x] Käyttäjä pystyy luomaan käyttäjätunnuksen ja kirjautumaan sisään.
 - [x] Käyttäjä voi lisätä parkkipaikan ja poistaa oman parkkipaikan
-- [x] Käyttäjä voi varata parkkipaikan käyttöön
+- [x] Käyttäjä voi varata parkkipaikan käyttöön ja lopettaa käytön
 - [ ] Käyttäjä voi arvioida parkkipaikan
 - [ ] Käyttäjä voi hakea parkkipaikkoja sijainnilla
