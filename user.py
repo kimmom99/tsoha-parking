@@ -35,6 +35,6 @@ def get_id():
 
 def get_own_parking_lots():
     id = get_id()
-    sql = "SELECT id, reserved, description , price FROM parkinglot WHERE owner_id=:user_id"
+    sql = "SELECT id, reserved, description , price FROM parkinglot WHERE owner_id=:user_id AND visible=1"
     result =  db.session.execute(sql, {"user_id": id})
     return result.fetchall()

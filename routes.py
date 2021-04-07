@@ -57,12 +57,27 @@ def new_park():
 
 @app.route("/home")
 def home():
-    return render_template('home.html', lots = user.get_own_parking_lots())
+    return render_template("home.html", lots = parking_lot.get_all())
 
-@app.route("/delete_parking_lot", methods=["POST"])
-def delete_parking_lot():
-    pass
+@app.route("/delete_parking_lot/<int:id>")
+def delete_parking_lot(id):
+    if parking_lot.delete(id):
+        return redirect("/home")
+    else:
+        return render_template("error.html", message="Jokin meni vikaan")
 
-@app.route("/book", methods=["POST"])
-def book_parking_lot():
-    pass
+@app.route("/control")
+def control():
+    return render_template("my_parking_lots.html", lots = user.get_own_parking_lots())
+
+@app.route("/book/<int:id>")
+def book(id):
+    if parking_lot.book(id):
+        return render_template("home.html", lots = parking_lot.get_all())
+    else:
+        return render_template("error.html", message = "Jokin meni vikaan")
+
+@app.route("/stop_using/<int:id>")
+def stop_using(id):
+    parking_lot.stop_using(id)
+    return redirect("/home")

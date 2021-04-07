@@ -4,20 +4,28 @@
 <hr>
 <a href="/add_parkinglot">Lisää parkkipaikka</a>
 <hr>
-<p>My parks:</p>
-{% for lot in lots %}
-{% if lot[1] == 0 %}
-<p>Paikka vapaana</p>
-{% endif %}
-<p>Kuvaus: {{ lot[2] }}</p>
-<p>Hinta: {{ lot[3] }}</p>
-<form action="/delete_parking_lot" method="POST">
-  <input type="submit" value="Ota käyttöön">
-</form>
-<br>
-<form action="/delete_parking_lot" method="POST">
-  <input type="submit" value="Poista parkkipaikka">
-</form>
+<a href="/control">Hallitse omia parkkipaikkoja</a>
 <hr>
+
+<p>Parkkipaikkoja:</p>
+<ol type="1">
+{% for lot in lots %}
+<li>
+<p>Myyjä: {{ lot[1] }}</p>
+<p>Kuvaus: {{ lot[3] }}</p>
+{% if lot[2] == 0 %}
+<p>Paikka vapaana</p>
+<a href="/book/{{ lot[0] }}">Varaa käyttöön</a>
+{% else %}
+<p>Paikka varattu</p>
+{% if lot[5] == session.user_id %}
+<a href="/stop_using/{{ lot[0] }}">Lopeta käyttö</a>
+{% endif %}
+{% endif %}
+<p>Hinta: {{ lot[4] }}</p>
+</li>
+<br>
 {% endfor %}
+</ol>
+
 {% endif %}

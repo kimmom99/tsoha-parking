@@ -1,0 +1,22 @@
+{% if session.user_id %}
+<p>Moi {{ session.username }}! Tervetuloa käyttämään parkkeeraussovellusta</p>
+<a href="/logout">Kirjaudu ulos</a>
+<hr>
+<a href="/add_parkinglot">Lisää parkkipaikka</a>
+<hr>
+<a href="/home">Takaisin etusivulle</a>
+<hr>
+<p>My parks:</p>
+<ol type="1">
+{% for lot in lots %}
+<li>
+<p>Kuvaus: {{ lot[2] }}</p>
+{% if lot[1] == 0 %}
+<p>Paikka vapaana</p>
+{% endif %}
+<p>Hinta: {{ lot[3] }}</p>
+<a href="/delete_parking_lot/{{lot[0]}}">Poista</a>
+</li>
+{% endfor %}
+</ol>
+{% endif %}

@@ -10,8 +10,10 @@ CREATE TABLE parkinglot (
     id SERIAL PRIMARY KEY,
     owner_id INTEGER REFERENCES users,
     reserved INTEGER,
+    who_reserved_id INTEGER,
     description TEXT,
     price INTEGER,
+    time TIMESTAMP,
     visible INTEGER
 );
 
