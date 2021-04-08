@@ -8,7 +8,7 @@ Sovelluksessa näkyy vapaasti käyttäjien lisättyjä parkkipaikkoja ja niihin 
 3. Käyttäjä voi varata parkkipaikan käyttöönsä.
 4. Parkkipaikat näkyvät kartalta ja voi painaa parkkipaikasta, jolloin näytetään lisää tietoa parkkipaikasta (kuka on lisännyt, hinta, arvostelut tähtinä ja mahdollisuus varata käyttöön).
 5. Käyttäjä voi arvioida parkkipaikkoja.
-6. Käyttäjä voi hakea parkkipaikkoja sijainnilla (annetaan sanallisesti lisätessä) ja kuvauksella.
+6. Käyttäjä voi hakea parkkipaikkoja sijainnilla (annetaan sanallisesti lisätessä).
 7. Ylläpitäjällä on hallinta kaikkiin parkkipaikkoihin (voi poistaa ja lisätä).
 8. Ylläpitäjä voi poistaa käyttäjän.
 9. Käyttäjä voi muokata parkkipaikkaan liittyviä tietoja.
