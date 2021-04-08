@@ -89,14 +89,14 @@ def city_result():
     city = request.args["city"]
     return render_template("home.html", lots = parking_lot.city_results(city))
 
-# @app.route("/comment/<int:id>")
-# def comment(id):
-#     return render_template("new_comment.html", parkking_lot_id = id)
+@app.route("/comment/<int:id>")
+def comment(id):
+    return render_template("new_comment.html", parkking_lot_id = id)
 
-# @app.route("/new_comment/<int:id>")
-# def new_comment(id):
-#     comment = request.form["comment"]
-#     if parking_lot.give_comment(id, comment):
-#         return redirect("/home")
-#     else:
-#         return render_template("error.html", message = "Kommentin antaminen ei onnistunut")
+@app.route("/new_comment/<int:id>", method=["POST"])
+def new_comment(id):
+    comment = request.form["comment"]
+    if parking_lot.give_comment(id, comment):
+        return redirect("/home")
+    else:
+        return render_template("error.html", message = "Kommentin antaminen ei onnistunut")

@@ -66,11 +66,11 @@ def city_results(city):
     return result.fetchall()
 
 
-# def give_comment(parkking_lot_id, comment):
-#     user_id = user.get_id()
-#     sql = "INSERT INTO comments (parkinglot_id, user_id, comment) VALUES (:parkinglot_id, :user_id, :comment)"
-#     db.session.execute(sql, {"parkinglot_id":parkking_lot_id, "user_id":user_id, "comment":comment})
-#     db.session.commit()
+def give_comment(parkking_lot_id, comment):
+     user_id = user.get_id()
+     sql = "INSERT INTO comments (parkinglot_id, user_id, comment) VALUES (:parkinglot_id, :user_id, :comment)"
+     db.session.execute(sql, {"parkinglot_id":parkking_lot_id, "user_id":user_id, "comment":comment})
+     db.session.commit()
 
 def give_stars():
     pass

@@ -27,7 +27,7 @@ Kaupunki: <input type="text" name="city">
 {% if lot[5] == session.user_id %}
 <a href="/stop_using/{{ lot[0] }}">Lopeta käyttö</a>
 {% endif %}
-<!-- <a href="/comment/{{ lot[0] }}">Anna arvio parkkipaikasta</a> -->
+<a href="/comment/{{ lot[0] }}">Anna arvio parkkipaikasta</a>
 {% endif %}
 <p>Hinta: {{ lot[4] }}</p>
 </li>
