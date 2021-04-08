@@ -20,7 +20,8 @@ CREATE TABLE parkinglot (
 CREATE TABLE location(
     id SERIAL PRIMARY KEY,
     parkinglot_id INTEGER REFERENCES parkinglot,
-    city TEXT
+    city TEXT,
+    address TEXT
 );
 
 CREATE TABLE comments(

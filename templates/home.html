@@ -1,16 +1,22 @@
 {% if session.user_id %}
-<p>Moi {{ session.username }}! Tervetuloa käyttämään parkkeeraussovellusta</p>
+<h1>Moi {{ session.username }}! Tervetuloa käyttämään parkkeeraussovellusta</h1>
 <a href="/logout">Kirjaudu ulos</a>
 <hr>
 <a href="/add_parkinglot">Lisää parkkipaikka</a>
 <hr>
 <a href="/control">Hallitse omia parkkipaikkoja</a>
 <hr>
-
+<form action="/city_results" method="GET">
+Kaupunki: <input type="text" name="city">
+<br>
+<input type="submit" value="Hae">
+</form>
 <p>Parkkipaikkoja:</p>
 <ol type="1">
 {% for lot in lots %}
 <li>
+<p>Kaupunki: {{ lot[6] }}</p>
+<p>Osoite: {{ lot[7] }}</p>
 <p>Myyjä: {{ lot[1] }}</p>
 <p>Kuvaus: {{ lot[3] }}</p>
 {% if lot[2] == 0 %}
@@ -21,6 +27,7 @@
 {% if lot[5] == session.user_id %}
 <a href="/stop_using/{{ lot[0] }}">Lopeta käyttö</a>
 {% endif %}
+<!-- <a href="/comment/{{ lot[0] }}">Anna arvio parkkipaikasta</a> -->
 {% endif %}
 <p>Hinta: {{ lot[4] }}</p>
 </li>
