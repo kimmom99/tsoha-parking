@@ -30,3 +30,26 @@ Sovelluksessa näkyy vapaasti käyttäjien lisättyjä parkkipaikkoja ja niihin 
 - [ ] Tietoturva
 - [ ] Koodin oikoluku ja siistiminen
 - [ ] Heroku
+
+
+### Ohjeet
+
+- Luo virtuaaliympäristö
+
+  `python3 -m venv venv`
+  
+- Käynnistä virtuaaliympäristö
+
+  `source venv/bin/activate`
+  
+- Asenna kaikki tarvittavat riippuvuudet
+
+  `pip install -r requirements.txt`
+  
+-  Luo tarvittavat taulut tietokantaan
+
+   `psql < schema.sql`
+
+- Käynnistä sovellus
+
+  `flask run`
