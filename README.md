@@ -25,7 +25,6 @@ Sovelluksessa näkyy vapaasti käyttäjien lisättyjä parkkipaikkoja ja niihin 
 - [x] Käyttäjä voi antaa tähtiä parkkipaikalle
 - [x] Käyttäjä voi hakea parkkipaikkoja sijainnilla
 - [x] Ylläpitäjän toiminnot
-- [ ] Käyttäjä voi lisätä kuvan
 - [ ] Ulkoasun toteutus
 - [ ] Tietoturva
 - [ ] Koodin oikoluku ja siistiminen
