@@ -1,24 +1,40 @@
 {% if session.user_id %}
-<h1>Moi {{ session.username }}! Tervetuloa käyttämään parkkeeraussovellusta</h1>
-<a href="/logout">Kirjaudu ulos</a>
-<hr>
-<a href="/add_parkinglot">Lisää parkkipaikka</a>
-<hr>
-<a href="/home">Takaisin etusivulle</a>
-<hr>
+{% extends "home_layout.html" %}
+{% block content %}
 {% if lots %}
-<p>My parks:</p>
-<ol type="1">
-{% for lot in lots %}
-<li>
-<p>Kuvaus: {{ lot[2] }}</p>
-{% if lot[1] == 0 %}
-<p>Paikka vapaana</p>
+<h1 class="text-center">Parkkipaikkoja</h1>
+
+<div class="container">
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    {% for lot in lots %}
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal"></h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">{{ lot[3] }} €</h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Kuvaus: {{ lot[2] }} </li>
+            {% if lot[1] == 0 %}
+            <li>Paikka vapaana</li>
+            {% endif %}
+            <li>Hinta: {{ lot[3] }}</li>
+            <li></li>
+          </ul>
+          <a href="/delete_parking_lot/{{lot[0]}}" class="btn w-100 btn btn-lg btn-outline-primary">Poista</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+{% else %}
+<h1 class="text-center">Sinulla ei ole parkkipaikkoja</h1>
 {% endif %}
-<p>Hinta: {{ lot[3] }}</p>
-<a href="/delete_parking_lot/{{lot[0]}}">Poista</a>
-</li>
-{% endfor %}
-</ol>
-{% endif %}
+
+{% endblock %}
 {% endif %}

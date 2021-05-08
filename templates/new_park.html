@@ -1,18 +1,38 @@
 {% if session.user_id %}
-<h1>Lisää uusi parkkipaikka</h1>
-<form action="/new_park" method="POST">
-Kaupunki: <br>
-<input type="text" name="city" size="20">
-<br>
-Osoite: <br>
-<input type="text" name="address" size="20">
-<br>
-Kuvaus: <br>
-<textarea name="description" rows="5" cols="40"></textarea>
-<br>
-Hinta: <br>
-<input type="number" name="price" size="20">
-<br>
-<input type="submit" value="Luo Parkkipaikka">
-</form>
+{% extends "home_layout.html" %}
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center">Lisää uusi parkkipaikka</h1>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                  <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Kommentoi</h4>
+                  </div>
+                  <div class="card-body">
+                    <form action="/new_park" method="POST">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <h4>Kaupunki</h4>
+                        </ul>
+                        <input class="fullwidth" type="text" name="city" size="auto">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <h4>Osoite</h4>
+                        </ul>
+                        <input class="fullwidth" type="text" name="address" size="20">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <h4>Kuvaus</h4>
+                        </ul>
+                        <textarea class="fullwidth" name="description" rows="5" cols="40"></textarea>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <h4>Hinta</h4>
+                        </ul>
+                        <input class="fullwidth" type="number" name="price" size="20">
+                        <input type="submit" value="Luo Parkkipaikka" class="btn w-100 btn btn-lg btn-outline-primary">
+                        </form>
+                  </div>
+                </div>
+            </div>
+</div>
+
+{% endblock %}
 {% endif %}

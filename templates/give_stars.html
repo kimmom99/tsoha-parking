@@ -1,15 +1,30 @@
 {% if session.user_id %}
-<a href="/home">Takaisin</a>
-<h1>Anna tähtiä</h1>
-<br>
-<form action="/give_stars/{{ id }}" method="POST">
-<p>Tähdet:</p>
-<input type="radio" name="stars" value="sv"> 0<br>
-<input type="radio" name="stars" value="fi"> 1<br>
-<input type="radio" name="stars" value="sv"> 2<br>
-<input type="radio" name="stars" value="en"> 3<br>
-<input type="radio" name="stars" value="sv"> 4<br>
-<input type="radio" name="stars" value="en" checked> 5<br>
-<input type="submit" value="Anna tähdet">
-</form>
+{% extends "home_layout.html" %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center"> 
+    {% if stars %}
+      {{ stars[0][1] / stars[0][0] }} 
+    {% endif %}
+    </h1>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                  <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Anna tähtiä</h4>
+                  </div>
+                  <div class="card-body">
+                    <form action="/give_stars/{{ id }}" method="POST">
+                        <input type="radio" name="stars" value=0> 0<br>
+                        <input type="radio" name="stars" value=1> 1<br>
+                        <input type="radio" name="stars" value=2> 2<br>
+                        <input type="radio" name="stars" value=3> 3<br>
+                        <input type="radio" name="stars" value=4> 4<br>
+                        <input type="radio" name="stars" value=5 checked> 5<br>
+                        <input type="submit" value="Anna tähdet" class="btn w-100 btn btn-lg btn-outline-primary">
+                        </form>
+                  </div>
+                </div>
+            </div>
+</div>
+{% endblock %}
 {% endif %}

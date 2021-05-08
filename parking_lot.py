@@ -91,7 +91,12 @@ def get_lot(id):
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
 
-# def give_stars(id, stars):
-#     sql = "UPDATE stars SET star_count=star_count+1, star_sum=star_sum+:=stars WHERE parkinglot_id=2"
-#     db.session.execute(sql, {"stars":stars})
-#     db.session.commit()
+def give_stars(id, number):
+     sql = "UPDATE stars SET star_count=star_count+1, star_sum=star_sum+:number WHERE parkinglot_id=:id"
+     db.session.execute(sql, {"number":number, "id":id})
+     db.session.commit()
+
+def get_stars(id):
+    sql = "SELECT star_count, star_sum FROM stars WHERE parkinglot_id=:id"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchall()

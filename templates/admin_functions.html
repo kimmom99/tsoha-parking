@@ -1,5 +1,6 @@
 {% if admin %}
-
+{% extends "home_layout.html" %}
+{% block content %}
 <h1>Olet ylläpitäjä</h1>
 <a href="/logout">Kirjaudu ulos</a>
 <hr>
@@ -37,6 +38,7 @@ Kaupunki: <input type="text" name="city">
 
 {% endfor %}
 </ol>
+{% endblock %}
 {% endif %}
 
 {% else %}

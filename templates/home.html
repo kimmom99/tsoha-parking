@@ -1,51 +1,43 @@
 {% if session.user_id %}
-<h1>Moi {{ session.username }}! Tervetuloa käyttämään parkkeeraussovellusta</h1>
-<a href="/logout">Kirjaudu ulos</a>
-<hr>
-{% if admin %}
-<h3>Olet ylläpitäjä</h3>
-<a href="/admin_functions">Ylläpitäjän toiminnot</a>
-<hr>
-{% endif %}
-<a href="/add_parkinglot">Lisää parkkipaikka</a>
-<hr>
-<a href="/control">Hallitse omia parkkipaikkoja</a>
-<hr>
-<form action="/city_results" method="GET">
-Kaupunki: <input type="text" name="city">
-<input type="submit" value="Hae">
-</form>
+
+{% extends "home_layout.html" %}
+{% block content %}
 {% if lots %}
-<p>Parkkipaikkoja:</p>
-<ol type="1">
-{% for lot in lots %}
-<li>
-<p>Kaupunki: {{ lot[6] }}</p>
-<p>Osoite: {{ lot[7] }}</p>
-<p>Omistaja: {{ lot[1] }}</p>
-<p>Kuvaus: {{ lot[3] }}</p>
-{% if lot[2] == 0 %}
-<p>Paikka vapaana</p>
-<a href="/book/{{ lot[0] }}">Varaa käyttöön</a>
+<div class="container">
+<h1 class="text-center">Parkkipaikkoja</h1>
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+  {% for lot in lots %}
+  <div class="col">
+    <div class="card mb-4 rounded-3 shadow-sm">
+      <div class="card-header py-3">
+        <h4 class="my-0 fw-normal">{{ lot[6] }}</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">{{ lot[4] }} €</h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>{{ lot[7] }} </li>
+          <li>Omistaja {{ lot[1] }}</li>
+          <li> {{ lot[3] }}</li>
+          <li></li>
+        </ul>
+        {% if lot[5] == session.user_id %}
+          <a href="/stop_using/{{ lot[0] }}" class="btn w-100 btn btn-lg btn-outline-primary">Lopeta käyttö</a>
+        {% endif %}
+        {% if lot[2] == 0 %}
+          <a href="/book/{{ lot[0] }}" class="btn w-100 btn btn-lg btn-outline-primary">Varaa käyttöön</a>
+        {% endif %}
+        <a href="/comment/{{ lot[0] }}" class="btn w-100 btn btn-lg btn-outline-primary">Kommentoi parkkipaikka</a>
+        <a href="/read_comments/{{ lot[0] }}" class="btn w-100 btn btn-lg btn-outline-primary">Lue kommentteja</a>
+        <a href="/new_stars/{{ lot[0] }}" class="btn w-100 btn btn-lg btn-outline-primary">Anna tähtiä</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+</div>
 {% else %}
-<p>Paikka varattu</p>
-{% if lot[5] == session.user_id %}
-<a href="/stop_using/{{ lot[0] }}">Lopeta käyttö</a>
+<h1 class="display-4">Ei yhtään varattaavaa parkkipaikkaa</h1>
 {% endif %}
-{% endif %}
-<br>
-<a href="/comment/{{ lot[0] }}">Kommentoi parkkipaikka</a>
-<br>
-<a href="/read_comments/{{ lot[0] }}">Lue kommentteja</a>
-<br>
-<a href="/new_stars/{{ lot[0] }}">Anna tähtiä</a>
-<p>Hinta: {{ lot[4] }}</p>
-</li>
-<br>
-{% endfor %}
-</ol>
-{% else %}
-<p>Ei yhtään varattaavaa parkkipaikkaa</p>
-{% endif %}
+{% endblock %}
 
 {% endif %}

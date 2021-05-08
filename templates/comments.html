@@ -1,27 +1,49 @@
-{% if lot != null %}
-<a href="/home">Etusivu</a>
-<hr>
-<a href="/comment/{{ id }}">Kommentoi parkkipaikkaa</a>
-<h1>Parkkipaikan kommentit</h1>
-<p>Parkkipaikka: </p>
-<p>Kaupunki: {{ lot[0][4] }}</p>
-<p>Osoite: {{ lot[0][5] }}</p>
-<p>Omistaja: {{ lot[0][0] }}</p>
-<p>Kuvaus: {{ lot[0][2] }}</p>
-{% if lot[0][1] == 0 %}
-<p>Paikka vapaana</p>
-{% else %}
-<p>Paikka varattu</p>
+{% if session.user_id %}
+{% extends "home_layout.html" %}
+{% block content %}
+{% if lot %}
+<div class="container">
+    <h1 class="text-center">Lisää uusi parkkipaikka</h1>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                  <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Parkkipaikan kommentit</h4>
+                  </div>
+                  <div class="card-body">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <h3 class="text-center">{{ lot[0][4] }}</h3>
+                            <h3 class="text-center">{{ lot[0][5] }}</h3>
+                            <h3 class="text-center">{{ lot[0][0] }}</h3>
+                            <h3 class="text-center">{{ lot[0][2] }}</h3>
+                            {% if lot[0][1] == 0 %}
+                            <h3 class="text-center">Paikka vapaana</h3>
+                            {% else %}
+                            <h3 class="text-center">Paikka varattu</h3>
+                            {% endif %}
+                        </ul>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <h4>Kommentit</h4>
+                        </ul>
+                        {% if comments %}
+                        {% for comment in comments %}
+
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>Kommentoija: {{ comment[0] }}</li>
+                            <li>Kommentti: {{ comment[1] }}</li>
+                        </ul>
+
+                        {% endfor %}
+                        {% else %}
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <h4>class="text-center"</h4>
+                        </ul>
+                        {% endif %}
+                        <a href="/comment/{{ id }}" class="btn w-100 btn btn-lg btn-outline-primary">Kommentoi parkkipaikkaa</a>
+                  </div>
+                </div>
+            </div>
+</div>
+
 {% endif %}
-<br>
-<p>Kommentit:</p>
-{% if comments %}
-{% for comment in comments %}
-<p>Kommentoija: {{ comment[0] }}</p>
-<p>Kommentti: {{ comment[1] }}</p>
-<br>
-{% endfor %}
-{% else %}
-<p>Ei kommentteja</p>
-{% endif %}
+{% endblock %}
 {% endif %}

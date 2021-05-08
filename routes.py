@@ -18,7 +18,9 @@ def login():
         if user.login(username,password):
             return redirect("/home")
         else:
-            return render_template("error.html", message="Väärä tunnus tai salasana")
+            return render_template("index.html", message="Väärä käyttäjätunnus tai salasana")
+
+
 
 @app.route("/new_user")
 def new_user():
@@ -30,11 +32,14 @@ def create():
         return render_template("home.html")
     if request.method == "POST":
         username = request.form["username"]
-        password = request.form["password"]
-        if user.create(username, password):
+        password1 = request.form["password1"]
+        password2 = request.form["password2"]
+        if password1 != password2:
+            return render_template("create.html", message="Salasanat eivät ole samat")
+        if user.create(username, password1):
             return redirect("/")
         else:
-            return render_template("error.html", message="Tilin luonti ei onnistunut")
+            return render_template("create.html", message="Tilin luonti ei onnistunut")
 
 @app.route("/logout")
 def logout():
@@ -106,15 +111,15 @@ def read_comments(id):
     lot = parking_lot.get_lot(id)
     return render_template("comments.html",lot = lot, comments = comments, id = id)
 
-# @app.route("/new_stars/<int:id>")
-# def new_stars(id):
-#     return render_template("give_stars.html", id = id)
+@app.route("/new_stars/<int:id>")
+def new_stars(id):
+    return render_template("give_stars.html", id = id, stars = parking_lot.get_stars(id))
 
-# @app.route("/give_stars/<int:id>", methods=["POST"])
-# def give_stars(id):
-#     stars = request.form["stars"]
-#     parking_lot.give_stars(id, stars)
-#     return redirect("/home")
+@app.route("/give_stars/<int:id>", methods=["POST"])
+def give_stars(id):
+    s = request.form["stars"]
+    parking_lot.give_stars(id, s)
+    return redirect("/home")
 
 #Admin functions
 @app.route("/admin_functions")

@@ -1,9 +1,23 @@
 {% if session.user_id %}
-<h1>Uusi kommentti</h1>
-<br>
-<form action="/new_comment/{{ parkking_lot_id }}" method="POST">
-<textarea name="comment" rows="5" cols="40"></textarea>
-<br>
-<input type="submit" value="Kommentoi">
-</form>
+{% extends "home_layout.html" %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Uusi kommentti</h1>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                  <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Kommentoi</h4>
+                  </div>
+                  <div class="card-body">
+                    <form action="/new_comment/{{ parkking_lot_id }}" method="POST">
+                        <textarea class="textarea" name="comment" rows="auto" cols="auto"></textarea>
+                        <br>
+                        <input type="submit" value="Kommentoi" class="btn w-100 btn btn-lg btn-outline-primary">
+                    </form>
+                  </div>
+                </div>
+            </div>
+</div>
+
+{% endblock %}
 {% endif %}
