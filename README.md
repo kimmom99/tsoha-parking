@@ -17,6 +17,7 @@ Sovelluksessa näkyy vapaasti käyttäjien lisättyjä parkkipaikkoja ja niihin 
 ### Sovelluksen tilanne
 
 [Herokun linkki](https://tsoha-park.herokuapp.com/)
+Herokussa en päässyt käsiksi luomaani tietokantaan. Olen yrittänyt kysyä ylläpidoltakin missä vika voisi olla, mutta en ehtinyt sitä saada selville. Herokussa näkee siis ainoastaa ulkoisen toteutuksen.
 
 - [x] Käyttäjä pystyy luomaan käyttäjätunnuksen ja kirjautumaan sisään.
 - [x] Käyttäjä voi lisätä parkkipaikan ja poistaa oman parkkipaikan
